@@ -9,15 +9,23 @@ namespace PinGolf
     {
         [SerializeField] private Text _timerText;
         [SerializeField] private Text _scoreText;
+        [SerializeField] private Text _coinText;
+
+        [SerializeField] private CoinSettings _coinSettings;
 
         public static float startTime = 61;
         public static int _score = 0;
         void Update()
         {
             _scoreText.text = "" + _score;
+            _coinText.text = "Coin : " + _coinSettings.coinCount;
+
             startTime -= Time.deltaTime;
+            _coinSettings.giftCounter -= Time.deltaTime;
+
             DisplayTime(startTime);
             TimeIsUp();
+            GiftTimer();
         }
 
         void DisplayTime(float timeToDisplay)
@@ -33,12 +41,32 @@ namespace PinGolf
             _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
+
         void TimeIsUp()
         {
             if(startTime <= 0)
             {
                 Debug.Log("asdasd");
                 Ball._managerUI.Lose();
+                _coinSettings.coinCount += (_score * 2);
+            }
+        }
+
+        public void Gift()
+        {
+            if (_coinSettings.giftCounter == 0)
+            {
+                _coinSettings.coinCount += 25;
+                _coinSettings.giftCounter = 150;
+                Debug.Log("25 coins add by gifter");
+            }
+        }
+
+        void GiftTimer()
+        {
+            if(_coinSettings.giftCounter < 0)
+            {
+                _coinSettings.giftCounter = 0;
             }
         }
     }

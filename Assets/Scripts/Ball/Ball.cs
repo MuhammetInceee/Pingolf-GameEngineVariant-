@@ -6,7 +6,9 @@ namespace PinGolf
     public class Ball : MonoBehaviour
     {
         [SerializeField] private BallSettings _ballSettings;
+        [SerializeField] private CoinSettings _coinSettings;
         [SerializeField] private GameObject _flag;
+        [SerializeField] private BallSpriteChanger _spriteChanger;
 
         public static UIManager _managerUI;
         public new Rigidbody2D rigidbody;
@@ -18,6 +20,7 @@ namespace PinGolf
         void Update()
         {
             BallSpeed();
+            gameObject.GetComponent<SpriteRenderer>().sprite = _spriteChanger.currentSprite;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +33,8 @@ namespace PinGolf
             else if (other.CompareTag("Lose"))
             {
                 _managerUI.Lose();
+
+                _coinSettings.coinCount += (Counter._score * 2);
             }
         }
 

@@ -14,10 +14,13 @@ namespace PinGolf
         [SerializeField] private GameObject _settingsScreen;
         [SerializeField] private GameObject _winEnded;
         [SerializeField] private GameObject _loseEnded;
-
+        [SerializeField] private GameObject _scoreText;
+        [SerializeField] private GameObject _coinText;
+        [SerializeField] private GameObject _shopScreen;
 
         [SerializeField] private GameObject _ball;
         [SerializeField] private GameObject _flag;
+        [SerializeField] private GameObject _timer;
 
         private void Start()
         {
@@ -26,6 +29,8 @@ namespace PinGolf
             _gameplayScreen.SetActive(false);
             _settingsScreen.SetActive(false);
             _winEnded.SetActive(false);
+            _scoreText.SetActive(false);
+            _coinText.SetActive(true);
         }
 
         public void StartGame()
@@ -34,6 +39,8 @@ namespace PinGolf
             _loginScreen.SetActive(false);
             _gameplayScreen.SetActive(true);
             _ball.SetActive(true);
+            _scoreText.SetActive(true);
+            _coinText.SetActive(false);
         }
         public void Settings()
         {
@@ -76,6 +83,22 @@ namespace PinGolf
             _ball.transform.position = new Vector3(-0.83f, 0.54f, -2.039551f);
             _loseEnded.SetActive(false);
             _settingsScreen.SetActive(true);
+        }
+
+        public void Shop()
+        {
+            _shopScreen.SetActive(true);
+            _timer.SetActive(false);
+            _loginScreen.SetActive(false);
+            _flag.SetActive(false);
+        }
+
+        public void CloseButton()
+        {
+            _shopScreen.SetActive(false);
+            _timer.SetActive(true);
+            _loginScreen.SetActive(true);
+            _flag.SetActive(true);
         }
     }
 }
