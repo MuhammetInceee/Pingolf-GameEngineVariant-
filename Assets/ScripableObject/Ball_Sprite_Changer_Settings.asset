@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4cc4988ede4ed4ea3569b05c16f674, type: 3}
   m_Name: Ball_Sprite_Changer_Settings
   m_EditorClassIdentifier: 
-  isRedLocked: 0
-  isBlueLocked: 0
+  isRedLocked: 1
+  isBlueLocked: 1

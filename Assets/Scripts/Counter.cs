@@ -13,6 +13,8 @@ namespace PinGolf
 
         [SerializeField] private CoinSettings _coinSettings;
 
+        [SerializeField] private Image _redDot;
+
         public static float startTime = 61;
         public static int _score = 0;
         void Update()
@@ -58,15 +60,17 @@ namespace PinGolf
             {
                 _coinSettings.coinCount += 25;
                 _coinSettings.giftCounter = 150;
+                _redDot.rectTransform.anchoredPosition = new Vector2(-110, 24);
                 Debug.Log("25 coins add by gifter");
             }
         }
 
         void GiftTimer()
         {
-            if(_coinSettings.giftCounter < 0)
+            if(_coinSettings.giftCounter <= 0)
             {
                 _coinSettings.giftCounter = 0;
+                _redDot.rectTransform.anchoredPosition = new Vector2(22, 24);
             }
         }
     }
